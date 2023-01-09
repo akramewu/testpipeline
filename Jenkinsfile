@@ -1,7 +1,7 @@
 
 pipeline {
     agent any
-    enviroment {
+    environment {
         NEW_VERSION = '1.5.0'
     }
     stages {
@@ -17,7 +17,7 @@ pipeline {
                 junit 'reports/**/*.xml'
             }
         }
-        stage('Stage') {
+        stage('Staging') {
             steps {
                 echo 'Staging of the application for deployment....'
             }
