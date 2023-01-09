@@ -30,7 +30,7 @@ pipeline {
                 echo 'Staging of the Java version for deployment....'
             }
         }
-        stage('Deploy to QA') {
+        stage('Deploy to Dev') {
             steps {
                 echo 'Deploying the Java version to Dev environment....'
             }
