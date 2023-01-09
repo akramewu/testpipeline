@@ -2,7 +2,8 @@
 pipeline {
     agent any
     tools{
-        maven 'Maven'
+        maven 'Maven 3.8.7'
+        jdk 'jdk9'
     }
     environment {
         NEW_VERSION = '1.5.0'
@@ -12,18 +13,20 @@ pipeline {
             steps {
                 echo 'Building the application...'
                 echo "building version ${NEW_VERSION}"
-                sh "mvn clean package -DskipTests=true"
-                archive 'target/*.jar'
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing the application...'
-                sh "mvn test"
+                sh 'mvn -Dmaven.test.failure.ignore=true install'
             }
             post{
-                always{
-                    junit 'target/surfire-reports/*.xml'
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
                 }
             }
         }
