@@ -12,7 +12,8 @@ pipeline {
             steps {
                 echo 'Building the application...'
                 echo "building version ${NEW_VERSION}"
-                sh "mvn install"
+                sh "mvn clean package -DskipTests=true"
+                archive 'target/*.jar'
             }
         }
         stage('Test') {
