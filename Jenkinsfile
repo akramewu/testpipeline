@@ -21,7 +21,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing the application...'
+                echo 'Testing the application of Java version...'
+                sh 'java -version'
             }
         }
         stage('Stage') {
