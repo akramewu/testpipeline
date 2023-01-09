@@ -27,12 +27,12 @@ pipeline {
         }
         stage('Stage') {
             steps {
-                echo 'Staging of the application for deployment....'
+                echo 'Staging of the Java version for deployment....'
             }
         }
         stage('Deploy to QA') {
             steps {
-                echo 'Deploying the application to QA environment....'
+                echo 'Deploying the Java version to Dev environment....'
             }
         }
     }
