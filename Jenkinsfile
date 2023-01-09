@@ -1,6 +1,9 @@
 
 pipeline {
     agent any
+    tools{
+        maven 'Maven'
+    }
     environment {
         NEW_VERSION = '1.5.0'
     }
@@ -9,12 +12,12 @@ pipeline {
             steps {
                 echo 'Building the application...'
                 echo "building version ${NEW_VERSION}"
+                sh "mvn install"
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing the application...'
-                junit 'reports/**/*.xml'
             }
         }
         stage('Stage') {
